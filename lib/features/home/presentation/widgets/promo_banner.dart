@@ -11,7 +11,7 @@ class PromoBanner extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
         image: const DecorationImage(
-          image: AssetImage('assets/icons/banner_image.png'),
+          image: AssetImage('assets/images/banner_image.png'),
           fit: BoxFit.fill,
         ),
         borderRadius: BorderRadius.circular(12),

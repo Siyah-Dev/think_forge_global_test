@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trading_app/features/home/presentation/widgets/finquo_banner.dart';
 import 'package:trading_app/features/home/presentation/widgets/home_balance_card.dart';
+import 'package:trading_app/features/home/presentation/widgets/overall_pl_card.dart';
 import 'package:trading_app/features/home/presentation/widgets/scrolling_banner.dart';
+import 'package:trading_app/features/home/presentation/widgets/trading_tips.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/action_buttons.dart';
 import '../widgets/promo_banner.dart';
@@ -33,6 +36,12 @@ class HomeScreen extends ConsumerWidget {
                 PromoBanner(),
                 SizedBox(height: 20),
                 TransactionOverviewCard(),
+                SizedBox(height: 16),
+                OverallPLCard(),
+                SizedBox(height: 16),
+                TradingTips(),
+                SizedBox(height: 16),
+                FinquoBanner(),
               ],
             );
           },

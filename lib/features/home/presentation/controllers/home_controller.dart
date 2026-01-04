@@ -1,9 +1,35 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trading_app/features/home/data/models/chart_data.dart';
 import 'home_state.dart';
 
 class HomeController extends StateNotifier<HomeState> {
-  HomeController() : super(HomeState.initial());
+  HomeController() : super(HomeState.initial()) {
+    _startAutoScroll();
+  }
+
+  Timer? _timer;
+
+  void _startAutoScroll() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (_) {
+      final nextIndex =
+          (state.tradingTipCurrentIndex + 1) % state.tradingTips.length;
+
+      state = state.copyWith(tradingTipCurrentIndex: nextIndex);
+    });
+  }
+
+  void onPageChanged(int index) {
+    state = state.copyWith(tradingTipCurrentIndex: index);
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   void changeFilter(TimeFilter filter) {
     switch (filter) {
       case TimeFilter.week:

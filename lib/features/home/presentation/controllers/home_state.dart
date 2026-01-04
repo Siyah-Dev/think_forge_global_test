@@ -10,6 +10,8 @@ class HomeState {
 
   final TimeFilter filter;
   final List<ChartData> chartData;
+  final int tradingTipCurrentIndex;
+  final List<String> tradingTips;
 
   const HomeState({
     required this.balance,
@@ -18,6 +20,8 @@ class HomeState {
     required this.bonusAmount,
     required this.filter,
     required this.chartData,
+    required this.tradingTipCurrentIndex,
+    required this.tradingTips,
   });
 
   factory HomeState.initial() {
@@ -33,6 +37,12 @@ class HomeState {
         ChartData(label: 'Aug', referral: 140, bonus: 100),
         ChartData(label: 'Sep', referral: 160, bonus: 130),
       ],
+      tradingTipCurrentIndex: 0,
+      tradingTips: [
+        'Always use a stop-loss. It protects your capital and prevents small losses from turning into account blowouts — discipline beats guessing every time.',
+        'Never risk more than 1–2% of your account on a single trade. Risk management is more important than winning trades.',
+        'Trade with the trend. Fighting the market usually leads to unnecessary losses.',
+      ],
     );
   }
 
@@ -43,6 +53,8 @@ class HomeState {
     double? bonusAmount,
     TimeFilter? filter,
     List<ChartData>? chartData,
+    int? tradingTipCurrentIndex,
+    List<String>? tradingTips,
   }) {
     return HomeState(
       balance: balance ?? this.balance,
@@ -51,6 +63,9 @@ class HomeState {
       bonusAmount: bonusAmount ?? this.bonusAmount,
       filter: filter ?? this.filter,
       chartData: chartData ?? this.chartData,
+      tradingTipCurrentIndex:
+          tradingTipCurrentIndex ?? this.tradingTipCurrentIndex,
+      tradingTips: tradingTips ?? this.tradingTips,
     );
   }
 }
