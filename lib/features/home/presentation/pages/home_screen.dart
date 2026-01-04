@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trading_app/features/home/presentation/widgets/home_balance_card.dart';
+import 'package:trading_app/features/home/presentation/widgets/scrolling_banner.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/action_buttons.dart';
 import '../widgets/promo_banner.dart';
@@ -23,6 +24,8 @@ class HomeScreen extends ConsumerWidget {
               children: const [
                 HomeAppBar(),
                 SizedBox(height: 20),
+                ScrollingBanner(),
+                SizedBox(height: 16),
                 HomeBalanceCard(),
                 SizedBox(height: 16),
                 ActionButtons(),
