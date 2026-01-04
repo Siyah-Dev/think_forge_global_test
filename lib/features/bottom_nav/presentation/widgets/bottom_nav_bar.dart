@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trading_app/core/routes/app_route_names.dart';
+import 'package:trading_app/core/theme/app_colors.dart';
 import '../controllers/bottom_nav_controller.dart';
 
 /// Bottom navigation bar widget
 class BottomNavBar extends ConsumerWidget {
   final void Function(int)? onItemTapped;
-  
-  const BottomNavBar({
-    super.key,
-    this.onItemTapped,
-  });
+
+  const BottomNavBar({super.key, this.onItemTapped});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bottomNavState = ref.watch(bottomNavControllerProvider);
     final screenWidth = MediaQuery.of(context).size.width;
-    
+
     // Responsive padding based on screen size
     final horizontalPadding = screenWidth > 600 ? 32.0 : 16.0;
     final iconSize = screenWidth > 600 ? 28.0 : 24.0;
@@ -25,9 +23,7 @@ class BottomNavBar extends ConsumerWidget {
     final itemSpacing = screenWidth > 600 ? 24.0 : 16.0;
 
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: const BoxDecoration(color: Colors.white),
       child: SafeArea(
         top: false,
         child: Padding(
@@ -40,50 +36,70 @@ class BottomNavBar extends ConsumerWidget {
             children: [
               _NavItem(
                 index: 0,
-                icon: Icons.home_outlined,
-                activeIcon: Icons.home,
+                icon: Image.asset(
+                  'assets/icons/home_icon.png',
+                  color: bottomNavState.selectedIndex == 0
+                      ? AppColors.background
+                      : AppColors.textSecondary,
+                ),
                 label: 'Home',
                 isActive: bottomNavState.selectedIndex == 0,
                 route: AppRouteNames.home,
                 iconSize: iconSize,
                 fontSize: fontSize,
-                onTap: () => _handleNavigation(context, ref, 0, AppRouteNames.home),
+                onTap: () =>
+                    _handleNavigation(context, ref, 0, AppRouteNames.home),
               ),
               SizedBox(width: itemSpacing),
               _NavItem(
                 index: 1,
-                icon: Icons.account_balance_wallet_outlined,
-                activeIcon: Icons.account_balance_wallet,
+                icon: Image.asset(
+                  'assets/icons/wallet_icon.png',
+                  color: bottomNavState.selectedIndex == 1
+                      ? AppColors.background
+                      : AppColors.textSecondary,
+                ),
                 label: 'Wallet',
                 isActive: bottomNavState.selectedIndex == 1,
                 route: AppRouteNames.wallet,
                 iconSize: iconSize,
                 fontSize: fontSize,
-                onTap: () => _handleNavigation(context, ref, 1, AppRouteNames.wallet),
+                onTap: () =>
+                    _handleNavigation(context, ref, 1, AppRouteNames.wallet),
               ),
               SizedBox(width: itemSpacing),
               _NavItem(
                 index: 2,
-                icon: Icons.chat_bubble_outline,
-                activeIcon: Icons.chat_bubble,
+                icon: Image.asset(
+                  'assets/icons/support_icon.png',
+                  color: bottomNavState.selectedIndex == 2
+                      ? AppColors.background
+                      : AppColors.textSecondary,
+                ),
                 label: 'Support',
                 isActive: bottomNavState.selectedIndex == 2,
                 route: AppRouteNames.support,
                 iconSize: iconSize,
                 fontSize: fontSize,
-                onTap: () => _handleNavigation(context, ref, 2, AppRouteNames.support),
+                onTap: () =>
+                    _handleNavigation(context, ref, 2, AppRouteNames.support),
               ),
               SizedBox(width: itemSpacing),
               _NavItem(
                 index: 3,
-                icon: Icons.account_balance_outlined,
-                activeIcon: Icons.account_balance,
+                icon: Image.asset(
+                  'assets/icons/coins_hand.png',
+                  color: bottomNavState.selectedIndex == 3
+                      ? AppColors.background
+                      : AppColors.textSecondary,
+                ),
                 label: 'IB',
                 isActive: bottomNavState.selectedIndex == 3,
                 route: AppRouteNames.ib,
                 iconSize: iconSize,
                 fontSize: fontSize,
-                onTap: () => _handleNavigation(context, ref, 3, AppRouteNames.ib),
+                onTap: () =>
+                    _handleNavigation(context, ref, 3, AppRouteNames.ib),
               ),
             ],
           ),
@@ -98,9 +114,10 @@ class BottomNavBar extends ConsumerWidget {
     int index,
     String route,
   ) {
-    ref.read(bottomNavControllerProvider.notifier).updateSelectedIndex(index, route);
-    
-    // Use custom onItemTapped if provided (for StatefulShellRoute), otherwise use context.go
+    ref
+        .read(bottomNavControllerProvider.notifier)
+        .updateSelectedIndex(index, route);
+
     if (onItemTapped != null) {
       onItemTapped!(index);
     } else {
@@ -112,8 +129,7 @@ class BottomNavBar extends ConsumerWidget {
 /// Individual navigation item widget
 class _NavItem extends StatelessWidget {
   final int index;
-  final IconData icon;
-  final IconData activeIcon;
+  final Widget icon;
   final String label;
   final bool isActive;
   final String route;
@@ -124,7 +140,6 @@ class _NavItem extends StatelessWidget {
   const _NavItem({
     required this.index,
     required this.icon,
-    required this.activeIcon,
     required this.label,
     required this.isActive,
     required this.route,
@@ -144,11 +159,12 @@ class _NavItem extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                isActive ? activeIcon : icon,
-                size: iconSize,
-                color: isActive ? Colors.black : Colors.grey,
-              ),
+              icon,
+              // Icon(
+              //   isActive ? activeIcon : icon,
+              //   size: iconSize,
+              //   color: isActive ? Colors.black : Colors.grey,
+              // ),
               const SizedBox(height: 4),
               Text(
                 label,
@@ -165,4 +181,3 @@ class _NavItem extends StatelessWidget {
     );
   }
 }
-

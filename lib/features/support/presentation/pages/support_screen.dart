@@ -6,13 +6,8 @@ class SupportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Support'),
-      ),
-      body: const Center(
-        child: Text('Support Screen'),
-      ),
+      appBar: AppBar(title: const Text('Support')),
+      body: const Center(child: Text('Support Screen')),
     );
   }
 }
-

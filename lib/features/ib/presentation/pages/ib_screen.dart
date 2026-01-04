@@ -6,13 +6,8 @@ class IBScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('IB'),
-      ),
-      body: const Center(
-        child: Text('IB Screen'),
-      ),
+      appBar: AppBar(title: const Text('IB')),
+      body: const Center(child: Text('IB Screen')),
     );
   }
 }
-
