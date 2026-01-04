@@ -20,7 +20,6 @@ class AppTheme {
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.background,
 
-      // 🧭 AppBar
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.background,
         elevation: 0,

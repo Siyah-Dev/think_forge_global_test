@@ -1,4 +1,3 @@
-/// State class for bottom navigation
 class BottomNavState {
   final int selectedIndex;
   final String currentRoute;

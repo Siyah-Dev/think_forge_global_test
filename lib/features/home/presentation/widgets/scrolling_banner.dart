@@ -10,7 +10,7 @@ class ScrollingBanner extends StatelessWidget {
     return Container(
       height: 36,
       width: double.infinity,
-      color: AppColors.secondary, // green banner
+      color: AppColors.secondary,
       child: Marquee(
         text:
             '⬇️ Withdrawals • 🔐 Secure Trading Wallet • ⚡ Instant Deposits • 🚀 Fast Withdrawals •',

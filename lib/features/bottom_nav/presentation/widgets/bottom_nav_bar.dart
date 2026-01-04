@@ -5,7 +5,6 @@ import 'package:trading_app/core/routes/app_route_names.dart';
 import 'package:trading_app/core/theme/app_colors.dart';
 import '../controllers/bottom_nav_controller.dart';
 
-/// Bottom navigation bar widget
 class BottomNavBar extends ConsumerWidget {
   final void Function(int)? onItemTapped;
 
@@ -16,7 +15,6 @@ class BottomNavBar extends ConsumerWidget {
     final bottomNavState = ref.watch(bottomNavControllerProvider);
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Responsive padding based on screen size
     final horizontalPadding = screenWidth > 600 ? 32.0 : 16.0;
     final iconSize = screenWidth > 600 ? 28.0 : 24.0;
     final fontSize = screenWidth > 600 ? 14.0 : 12.0;
@@ -126,7 +124,6 @@ class BottomNavBar extends ConsumerWidget {
   }
 }
 
-/// Individual navigation item widget
 class _NavItem extends StatelessWidget {
   final int index;
   final Widget icon;
@@ -160,11 +157,6 @@ class _NavItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               icon,
-              // Icon(
-              //   isActive ? activeIcon : icon,
-              //   size: iconSize,
-              //   color: isActive ? Colors.black : Colors.grey,
-              // ),
               const SizedBox(height: 4),
               Text(
                 label,
