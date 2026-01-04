@@ -8,7 +8,6 @@ import 'package:trading_app/features/support/presentation/pages/support_screen.d
 import 'package:trading_app/features/ib/presentation/pages/ib_screen.dart';
 
 class AppRouter {
-  
   static final GoRouter router = GoRouter(
     initialLocation: AppRouteNames.home,
     routes: [
@@ -60,11 +59,7 @@ class AppRouter {
         ],
       ),
     ],
-    errorBuilder: (context, state) => Scaffold(
-      body: Center(
-        child: Text('Error: ${state.error}'),
-      ),
-    ),
+    errorBuilder: (context, state) =>
+        Scaffold(body: Center(child: Text('Error: ${state.error}'))),
   );
 }
-

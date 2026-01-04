@@ -8,14 +8,10 @@ class BottomNavState {
     required this.currentRoute,
   });
 
-  BottomNavState copyWith({
-    int? selectedIndex,
-    String? currentRoute,
-  }) {
+  BottomNavState copyWith({int? selectedIndex, String? currentRoute}) {
     return BottomNavState(
       selectedIndex: selectedIndex ?? this.selectedIndex,
       currentRoute: currentRoute ?? this.currentRoute,
     );
   }
 }
-

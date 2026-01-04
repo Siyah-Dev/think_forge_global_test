@@ -8,10 +8,7 @@ import '../widgets/bottom_nav_bar.dart';
 class MainScaffold extends ConsumerStatefulWidget {
   final StatefulNavigationShell navigationShell;
 
-  const MainScaffold({
-    super.key,
-    required this.navigationShell,
-  });
+  const MainScaffold({super.key, required this.navigationShell});
 
   @override
   ConsumerState<MainScaffold> createState() => _MainScaffoldState();
@@ -29,7 +26,8 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
   @override
   void didUpdateWidget(MainScaffold oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.navigationShell.currentIndex != widget.navigationShell.currentIndex) {
+    if (oldWidget.navigationShell.currentIndex !=
+        widget.navigationShell.currentIndex) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _updateBottomNavState();
       });
@@ -44,11 +42,11 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
       AppRouteNames.support,
       AppRouteNames.ib,
     ];
-    
+
     final currentRoute = routes[currentIndex];
     final controller = ref.read(bottomNavControllerProvider.notifier);
     final currentState = ref.read(bottomNavControllerProvider);
-    
+
     if (currentState.selectedIndex != currentIndex) {
       controller.updateSelectedIndex(currentIndex, currentRoute);
     }
@@ -65,9 +63,7 @@ class _MainScaffoldState extends ConsumerState<MainScaffold> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: widget.navigationShell,
-      bottomNavigationBar: BottomNavBar(
-        onItemTapped: _onItemTapped,
-      ),
+      bottomNavigationBar: BottomNavBar(onItemTapped: _onItemTapped),
     );
   }
 }
